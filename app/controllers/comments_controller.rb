@@ -1,9 +1,10 @@
 class CommentsController < ApplicationController
 
   def create
+    @user = current_user
     @comment = Comment.new(comment_params)
     @comments = Comment.all
-    @prototypes = @user.prototypes
+    @prototypes = @user.prototype
     if @comment.save
       redirect_to prototype_path(@comment.prototype)
     else
